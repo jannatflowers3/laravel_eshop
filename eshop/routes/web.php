@@ -33,4 +33,6 @@ Route::get('/dashboard', [SuperAdminController::class, 'dashboard']);
 Route::get('/logout', [SuperAdminController::class, 'logout']);
 // category route start
 Route::resource('/categorys', CategoryController::class);
+Route::get('/cat_status{category}', [CategoryController::class, 'logout']);
+
 

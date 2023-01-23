@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-       
+        $categories = Category::all();
+        return view('admin.category.index',compact('categories'));
     }
 
     /**
@@ -35,15 +36,32 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $validation =   $request->validate([
+            'name' => 'required',
+            'description' => 'min:3',
+            'image' =>'image|mimes:png,jpg,pdf |max:2048'
+           
+            
+        ]);
         $category = new Category;
         $category->id = $request->category;
         $category->name = $request->name;
         $category->description = $request->description;
+        // $category->image = $request->image->Store('category');
         if($request->hasfile('image')){
             $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . "." . $extension;
+            $file->move('category', $filename);
+            $category->image = $filename;    
+
         }
-        
+        $category->save();
+        return redirect()->back()->with('message', "Category Product added");
+     
+
     }
+    
 
     /**
      * Display the specified resource.
