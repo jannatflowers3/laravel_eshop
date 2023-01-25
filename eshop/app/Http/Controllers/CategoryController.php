@@ -48,14 +48,20 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->description = $request->description;
         // $category->image = $request->image->Store('category');
-        if($request->hasfile('image')){
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . "." . $extension;
-            $file->move('category', $filename);
-            $category->image = $filename;    
+        // if($request->hasfile('image')){
+        //     $file = $request->file('image');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $filename = time() . "." . $extension;
+        //     $file->move('category', $filename);
+        //     $category->image = $filename;    
 
-        }
+        // }
+        if($request->image){        
+            $imageName = time() . "." .
+            $request->image->extension();
+            $request->image->move(public_path('category'), $imageName);
+            $category->image = $imageName;
+          }
         $category->save();
         return redirect()->back()->with('message', "Category Product added");
      
@@ -69,9 +75,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function change_status( Category $category)
     {
-        //
+        if($category->status == 1){
+            $category->update(['status'=>0]);
+        }
+        else{
+            $category->update(['status' =>1]);
+        }
+       
+        return redirect()->back()->with('message', "Category Status update successfully");
     }
 
     /**
@@ -80,9 +93,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+      
+        return view('admin.category.edit',compact('category'));
+        // echo "hello";
     }
 
     /**
@@ -92,9 +107,21 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Category $category)
     {
-        //
+       
+          $category->name = $request->name;
+        $category->description = $request->description;
+   
+        if($request->image){        
+            $imageName = time() . "." .
+            $request->image->extension();
+            $request->image->move(public_path('category'), $imageName);
+            $category->image = $imageName;
+          }
+
+        $category->update();
+        return redirect('/categorys')->with('message', "category updated successfully");
     }
 
     /**
@@ -103,8 +130,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect('/categorys')->with('message', 'Category delete successfully');
+        // $delete = $category->delete();
+        // if($delete){
+        //     return redirect('/categories')->with('message',"Category delete successfully")
+        // }
     }
 }
