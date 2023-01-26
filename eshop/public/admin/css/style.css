@@ -476,7 +476,7 @@ a.brand span {
 .nav-tabs.nav-stacked  > li.active > ul {
 	padding: 5px 0px;
   	color: #3b3b41;
-  	background: #fff;
+  	/* background: #fff; */
 }
 
 .nav-tabs.nav-stacked > li:first-child > a {

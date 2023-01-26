@@ -8,14 +8,22 @@
             <li><a href="widgets.html"><i class="icon-dashboard"></i><span class="hidden-tablet"> Widgets</span></a></li>
            --}}
             <li>
-                <a class="dropmenu" href="{{url('/categorys')}}"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Category</span><span class="label label-important"> 3 </span></a>
+                <a class="dropmenu" href="{{url('/categorys')}}"><i class="icon-folder-close-alt"></i></a>
                 <ul>
-                    <li><a class="submenu" href="{{url('/categorys/create ')}}"><i class="icon-file-alt"></i><span class="hidden-tablet">Add Category</span></a></li>
+                    <li><a class="submenu" href="{{url('/categorys/create')}}"><i class="icon-file-alt"></i><span class="hidden-tablet">Add Category</span></a></li>
                     <li><a class="submenu" href="{{url('/categorys')}}"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Category</span></a></li>
                     {{-- <li><a class="submenu" href="submenu3.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 3</span></a></li> --}}
                 </ul>	
             </li>
-            <li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>
+            <li>
+                <a class="dropmenu" href="{{url('/subcategories')}}"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> SubCategory</span></a>
+                <ul>
+                    <li><a class="submenu" href="{{url('/subcategories/create')}}"><i class="icon-file-alt"></i><span class="hidden-tablet">Add SubCategory</span></a></li>
+                    <li><a class="submenu" href="{{url('/subcategories')}}"><i class="icon-file-alt"></i><span class="hidden-tablet"> All SubCategory</span></a></li>
+                    {{-- <li><a class="submenu" href="submenu3.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 3</span></a></li> --}}
+                </ul>	
+            </li>
+            <li>
             <li><a href="chart.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> Charts</span></a></li>
             <li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet"> Typography</span></a></li>
             <li><a href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet"> Gallery</span></a></li>
